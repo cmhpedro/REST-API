@@ -30,6 +30,10 @@ app.post("/api", (req, res) => {
     const modifiedAt = new Date();
     const { name, isDone } = req.body;
 
+    if (name === undefined || isDone === undefined) {
+        res.status(400).json({ message: "Name and isDone are required" });
+    }
+
     const newTodo = { id, createdAt, modifiedAt, name, isDone };
     data.data.push(newTodo);
     id++;
